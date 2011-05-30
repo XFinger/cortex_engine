@@ -1,0 +1,26 @@
+<h3>Forgot Your Password?</h3>
+
+<% form_for(@password) do |f| %>
+  <%= f.error_messages %>
+
+  <p>Enter your email address and we'll send you a link to reset your password.</p>
+
+  <p>
+    
+    <%= f.text_field :email, :id => 'email' %>
+  </p>
+  <p>
+    <%= f.submit "Submit" %>
+  </p>
+<% end %>
+<script type="text/javascript">
+  $.watermark.options.useNative = false;
+	$(function () {
+		$("#email").watermark("Email");
+		$("#submit").click(
+			function () {
+				this.form.submit();
+			}
+		);
+	});
+</script>

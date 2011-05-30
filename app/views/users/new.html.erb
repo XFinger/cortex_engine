@@ -1,0 +1,32 @@
+<div> 
+	<h3> Sign Up</h3>
+
+			 		
+			<% form_for :user, :url => users_path do |f| -%>
+				<%= f.error_messages %>
+				<%= f.text_field :login, :id => 'login' %> <br>
+				<%= f.text_field :email, :id => 'email' %> <br>
+				<%= f.password_field :password, :id => 'password' %> <br>
+				<%= f.password_field :password_confirmation, :id => 'cpass' %> <br><br>
+ 				<%= submit_tag  "Submit" %> 
+ 			<% end %><br><br>
+
+			<%= link_to "Log In", login_path%>
+
+</div>
+
+<script type="text/javascript">
+  $.watermark.options.useNative = false;
+	$(function () {
+		$("#login").watermark("User Name");
+		$("#password").watermark("Password");
+		$("#email").watermark("Email");
+		$("#cpass").watermark("Confirm Password");
+		$("#submit").click(
+			function () {
+				this.form.submit();
+			}
+		);
+	});
+</script>
+

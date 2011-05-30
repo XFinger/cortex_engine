@@ -1,0 +1,24 @@
+    <h3> Log In</h3>
+	<% form_for @user_session do |f| %>
+		<%= f.error_messages %>  	 
+		<%= f.password_field :password, :id => 'password' %> <br>
+		<%= f.text_field :login, :id => 'login' %> <br>
+		<p><%= submit_tag  "Submit" %> </p>
+	<%end%>
+		<%= link_to "Forgot Password?", forgot_password_path  %> 		 	
+		<%= link_to "Sign Up", signup_path%>
+		
+		
+<script type="text/javascript">
+  $.watermark.options.useNative = false;
+	$(function () {
+		$("#login").watermark("User Name");
+		$("#password").watermark("Password");
+		$("#submit").click(
+			function () {
+				this.form.submit();
+			}
+		);
+	});
+</script>
+ 

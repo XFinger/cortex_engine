@@ -1,0 +1,69 @@
+h1. Cortex_Engine
+
+Cortex_Engine is a rails (2.3.8) base setup that includes eveything you need to get started on a new ruby on rails project.
+
+h2. Includes: 
+
+* User authentication with *AuthLogic*
+* *Forgot password plugin* with password mailer
+* *Contact us* forms and mailers with support for gmail
+* Application layout (basic single column with header and footer)
+* CSS (very basic)
+* Support for *jquery*
+* A few useful javascripts for fading flash notice/errors and form field hinting
+* A *sessions table* for using active_record_store
+* *Acts as state machine gem* 
+* Form style helper
+ 
+
+h2. Install
+
+ # Grab the git repo
+ # Edit /config/database.yml
+ # Create the databases - rake db:create:all 
+ # Load the schema - rake db:schema:load
+ # Edit /config/initializers/session_store.rb
+ # Edit /config/mailer.yml
+ # Edit /config/initializers/smtp_gmail.rb
+ # Edit /models/user_mailer.rb
+ # Edit /models/password_mailer.rb
+ # Install gems - rake gems:install
+ # Fire up your server and see what you've done!
+
+h1. More Information
+
+h2. Database:
+
+The database.yml is set up to use MySQL for your database, you can change it to use SQLite or another DB of your preference.
+
+h2. Sessions:
+
+Sessions are stored in the DB. There is a sessions table set up for storage. Using the database for sessions is more secure and efficent.
+Change the key and secret in /config/initializers/session_store.rb. If you prefer to use the default cookie based approach, you can comment out or delete line 24 "config.action_controller.session_store = :active_record_store" in /config/environment.rb and delete the sessions table from the database.
+Please note that the sessions table can grow quite large and should be purged on a regular basis. Use rake db:sessions:clear. You may also want to set up a cron job to do this at a regular interval.
+
+h2. Mailers( password and contact_us)
+
+The mailers are set up to use gmail for smtp. You need to edit 4 files ( mailer.yml, smtp_gmail.rb, user_mailer.rb & password_mailer.rb), adding your email address and passwords as necessary. If you don't want to use gmail, you can delete smtp_gmail.rb.
+
+h2. Gems:
+
+* Binarylogic Authlogic gem for user authentication. More configuration information and modules can be found on "github":https://github.com/binarylogic/authlogic 
+* rubyist-aasm gem ( acts as state machine ). The aasm gem isn't necessary for the cortex_engine but I always seem to find a need for it so I have included it. More info can be found on "github":https://github.com/rubyist/aasm
+
+h2. Plugins
+
+* Greenisus forgot_password_plugin for resetting forgotten passwords. More info can be found on "github":https://github.com/greenisus/forgot_password
+
+h2. Javascript
+
+Cortex_Engine in configured to use jquery. If you want to use the default prototype library, delete the jquery links from the head section of the application layout and uncomment "javascript_include_tag :defaults".
+I have added two scripts. One for fading out flash notices/errors and another that provides hint text for form fields.
+
+h2. Helpers
+
+I have included form_style_helper in the helpers folder. This helper in conjunction with CSS helps you customize your forms. More info can  be found on "github":https://github.com/corvidworks/form-style-helper.
+
+h2. HTML/CSS
+
+A basic (single column with header and footer) application layout file is included. A basic CSS file is included, titled 'one.css'.

@@ -1,0 +1,31 @@
+<h3>Reset your password</h3>
+
+<% form_for(:user, :url => { :action => 'update_after_forgetting' }) do |f| %>
+  <%= f.error_messages %>
+
+  <p>Please enter a new password and confirm it.</p>
+  <p>  
+    <%= f.password_field :password, :id => 'pass' %>
+  </p>
+
+  <p>
+    <%= f.password_field :password_confirmation, :id => 'cpass' %>
+  </p>
+
+  <p>
+    <%= hidden_field_tag :reset_code, params[:reset_code] %>
+    <%= f.submit "Reset password!" %>
+  </p>
+<% end %>
+<script type="text/javascript">
+  $.watermark.options.useNative = false;
+	$(function () {
+		$("#pass").watermark("Password");
+		$("#cpass").watermark("Confirm Password");
+		$("#submit").click(
+			function () {
+				this.form.submit();
+			}
+		);
+	});
+</script>

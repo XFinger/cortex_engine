@@ -1,0 +1,36 @@
+ 
+	<h3 class = 'center'>Questions? Comments? Send us some mail.</h3>
+		<%= form_tag '/email/create' %>	
+			<% if current_user %>	 
+				<div><%= current_user.email %></div>	 
+			  	<%= hidden_field 'email', 'sender_email', :value => current_user.email %>
+			<%else%>
+			  	<%= text_field 'email', 'sender_email', :id => 'sender_mail' %>
+			<%end%>	
+		 	<p>
+			   	<%= text_field 'email','subject', :id => 'mail_subj'  %>
+			</p>
+			<p>	
+			    <%= text_area 'email', 'message', :id => 'mail_body'%>
+	  		</p>
+ 
+ 			<%= submit_tag  "Send" %> 
+ 
+  
+	
+ <script type="text/javascript">
+  $.watermark.options.useNative = false;
+ 
+	$(function () {
+		$("#sender_mail").watermark("Your Email Address");
+		$("#mail_subj").watermark("Subject");
+		$("#mail_body").watermark("Message");
+ 
+		$("#submit").click(
+			function () {
+				this.form.submit();
+			}
+		);
+	});
+
+</script>
